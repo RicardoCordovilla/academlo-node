@@ -8,7 +8,7 @@ const userRouter=require('./users/users.router')
 app.use(express.json())
 
 app.get('/',(req,res)=>{
-    res.status(200).json({message:"Serever is OK!",port:PORT})
+    res.status(200).json({message:"Serever is OK!"})
 })
 
 app.use('/',userRouter)
