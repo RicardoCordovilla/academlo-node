@@ -39,21 +39,14 @@ const getAllUsers = () => userDB
 
 const getUserById=(id)=>{
     // en este caso no hacemos ningún parseo porque id es string
-    const data=userDB.find(user=>user.id===id)
+    const data=userDB.find(user=>user.id==id)
     return data
 }
 
-const createUser =(params)=>{
-    const newUser={
-        id:uuid.v4(),
-        first_name:params.first_name,
-        last_name:params.last_name,
-        email:params.email,
-        password:params.password,
-        birthday:params.birthday    
-    }
-    userDB.push(newUser)
-    return newUser
+const createUser =(user)=>{
+    user.id = uuid.v4()
+    userDB.push(user)
+    return user
 }
 
 module.exports={

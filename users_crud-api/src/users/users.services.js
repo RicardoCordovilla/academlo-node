@@ -2,7 +2,9 @@ const {
     getAllUsers,
     getUserById,
     createUser
-} = require('./uses.controllers')
+} = require('./users.controllers')
+
+const {validateModelUser}=require('./user.validator')
 
 const getUsers = (req, res) => {
     const data = getAllUsers()
@@ -19,13 +21,11 @@ const getUser = (req, res) => {
 }
 
 const newUser = (req, res) => {
-    const  params  = req.body
-    if (params) {
-        const data = createUser(first_name)
-        res.status(201).json(data)
-    }
-    else {
-        res.status(400).json({ message: 'Incomplete fields' })
+    if (validateModelUser(req.body)) {
+        const data = addUser(req.body);
+        res.status(201).json(data);
+    } else {
+        res.status(400).json({ message: "Invalid fields" })
     }
 }
 
