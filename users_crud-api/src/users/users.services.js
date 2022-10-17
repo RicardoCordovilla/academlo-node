@@ -21,10 +21,15 @@ const getUser = (req, res) => {
 }
 
 const newUser = (req, res) => {
-    if (validateModelUser(req.body)) {
-        const data = createUser(req.body);
-        res.status(201).json(data);
-    } else {
+    // if (validateModelUser(req.body)) {
+    //     const data = createUser(req.body)
+    //     res.status(201).json(data)
+    // } 
+    if(req.body){
+        const data=createUser(req.body)
+        res.status(201).json({data:data})
+    }
+    else {
         res.status(400).json({ message: "Invalid fields" })
     }
 }
